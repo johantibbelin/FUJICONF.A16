@@ -1,0 +1,14 @@
+'
+' "IKEA" Fujinet (Atari 16 bit)
+'
+' Fujinet config program using vt52
+CLS
+PRINT AT(1,1);"Fujinet"
+' servers
+PRINT AT(2,4);"SD"
+PRINT AT(2,5);"fujinet.irata.online"
+PRINT AT(1,12);"----------------------------------------"
+FOR slot&=1 TO 8
+  PRINT AT(2,13+slot&);slot&;":"
+NEXT slot&
+PRINT AT(1,22);"----------------------------------------"

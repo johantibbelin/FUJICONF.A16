@@ -1,14 +1,42 @@
+' ************************************
+' * Fujinet Config (Atari 16 bit)    *
+' *----------------------------------*
+' * MIDI and ACSI funcionality       *
+' * ---------------------------------*
 '
-' "IKEA" Fujinet (Atari 16 bit)
 '
-' Fujinet config program using vt52
+' **----------------------------------
+' * Config
+'
+debug!=TRUE
+use_acsi!=FALSE
+use_midi!=TRUE
+use_vt52=FALSE
+'
 CLS
-PRINT AT(1,1);"Fujinet"
-' servers
-PRINT AT(2,4);"SD"
-PRINT AT(2,5);"fujinet.irata.online"
-PRINT AT(1,12);"----------------------------------------"
-FOR slot&=1 TO 8
-  PRINT AT(2,13+slot&);slot&;":"
-NEXT slot&
-PRINT AT(1,22);"----------------------------------------"
+init
+END
+PROCEDURE init
+  IF use_acsi!
+    init_acsi
+  ELSE IF use_midi!
+    init_midi
+  ENDIF
+RETURN
+PROCEDURE init_midi
+  PRINT AT(0,22);"Midi init started..."
+RETURN
+PROCEDURE init_acsi
+  PRINT AT(1,22);"ACSI init started..."
+RETURN
+PROCEDURE test_screen
+  PRINT AT(1,1);"Fujinet"
+  ' servers
+  PRINT AT(2,4);"SD"
+  PRINT AT(2,5);"fujinet.irata.online"
+  PRINT AT(1,12);"----------------------------------------"
+  FOR slot&=1 TO 8
+    PRINT AT(2,13+slot&);slot&;":"
+  NEXT slot&
+  PRINT AT(1,22);"----------------------------------------"
+RETURN

@@ -11,7 +11,7 @@
 debug!=TRUE
 use_acsi!=FALSE
 use_midi!=TRUE
-use_vt52=FALSE
+use_vt52!=FALSE
 '
 CLS
 init
@@ -24,7 +24,7 @@ PROCEDURE init
   ENDIF
 RETURN
 PROCEDURE init_midi
-  PRINT AT(0,22);"Midi init started..."
+  PRINT AT(1,24);"Midi init started...";
 RETURN
 PROCEDURE init_acsi
   PRINT AT(1,22);"ACSI init started..."
@@ -39,4 +39,6 @@ PROCEDURE test_screen
     PRINT AT(2,13+slot&);slot&;":"
   NEXT slot&
   PRINT AT(1,22);"----------------------------------------"
+RETURN
+PROCEDURE vt52_test
 RETURN

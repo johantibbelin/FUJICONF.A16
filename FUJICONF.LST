@@ -15,6 +15,7 @@ use_vt52!=FALSE
 '
 CLS
 init
+vt52_test
 END
 PROCEDURE init
   vt52_init
@@ -41,8 +42,6 @@ PROCEDURE test_screen
   NEXT slot&
   PRINT AT(1,22);"----------------------------------------"
 RETURN
-PROCEDURE vt52_test
-RETURN
 PROCEDURE vt52_init
   ' ** VT52 codes
   esc$=CHR$(27)
@@ -60,7 +59,7 @@ PROCEDURE vt52_init
   ' ** Cursor to supply row,col
   vt52_cto$=esc$+"Y,"
   ' ** Foreground color supply color (1-15)
-  vt52_fcolor$=esc$+"b,"
+  vt52_fcolor$=esc$+"b"
   ' ** Background color supply color (1-15)
   vt52_clrspage$=esc$+"d"
   vt52_showm$=esc$+"e"
@@ -74,4 +73,18 @@ PROCEDURE vt52_init
   vt52_nrowatend$=esc$+"v"
   vt52_srowatend$=esc$+"w"
   vt52_bcolor$=esc$+"c,"
+RETURN
+PROCEDURE vt52_test
+  CLS
+  LOCAL vt52text$,vt52init$
+  vt52text$=vt52_cls$+vt52_invert$+vt52_showm$+vt52_fcolor$+"3"
+  vt52text$=vt52text$+"           testy testy"
+  '  PRINT vt52_init$
+  LOCAL i%,t%
+  FOR i%=1 TO LEN(vt52text$)
+    PRINT MID$(vt52text$,i%,1);
+    FOR t%=0 TO 5
+      VSYNC
+    NEXT t%
+  NEXT i%
 RETURN

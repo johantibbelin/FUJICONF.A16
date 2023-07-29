@@ -98,7 +98,7 @@ PROCEDURE vt52_test
   vt52text$=vt52text$+" Test of VT52 for use with "+vt52_fcolor$+CHR$(3)+"Fujinet      "
   PRINT vt52_init$
   LOCAL i%,t%,r%
-  PRINT vt52_invert$
+  PRINT vt52_invert$;
   FOR r%=1 TO 15
     ' set color
     PRINT vt52_fcolor$+CHR$(r%);
@@ -115,7 +115,7 @@ PROCEDURE vt52_test
       VSYNC
     NEXT t%
   NEXT i%
-  PRINT vt52_invert$
+  PRINT vt52_invert$;
   FOR r%=1 TO 15
     ' set color
     PRINT vt52_fcolor$+CHR$(r%);

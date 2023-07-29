@@ -17,6 +17,7 @@ CLS
 init
 END
 PROCEDURE init
+  vt52_init
   IF use_acsi!
     init_acsi
   ELSE IF use_midi!
@@ -41,4 +42,36 @@ PROCEDURE test_screen
   PRINT AT(1,22);"----------------------------------------"
 RETURN
 PROCEDURE vt52_test
+RETURN
+PROCEDURE vt52_init
+  ' ** VT52 codes
+  esc$=CHR$(27)
+  vt52_cup$=esc$+"A"
+  vt52_cdwn$=esc$+"B"
+  vt52_crgt$=esc$+"C"
+  vt52_clft$=esc$+"D"
+  vt52_cls$=esc$+"E"
+  vt52_home$=esc$+"H"
+  vt52_cupr$=esc$+"I"
+  vt52_clrpge$=ec$+"J"
+  vt52_clrrow$=esc$+"K"
+  vt52_insrow$=esc$+"L"
+  vt52_delrow$=esc$+"M"
+  ' ** Cursor to supply row,col
+  vt52_cto$=esc$+"Y,"
+  ' ** Foreground color supply color (1-15)
+  vt52_fcolor$=esc$+"b,"
+  ' ** Background color supply color (1-15)
+  vt52_clrspage$=esc$+"d"
+  vt52_showm$=esc$+"e"
+  vt52_hidem$=esc$+"f"
+  vt52_savem$=esc$+"j"
+  vt52_restm$=esc$+"k"
+  vt52_clrrow$=esc$+"l"
+  vt52_crowto$=esc$+"o"
+  vt52_invert$=esc$+"p"
+  vt52_normal$=esc$+"q"
+  vt52_nrowatend$=esc$+"v"
+  vt52_srowatend$=esc$+"w"
+  vt52_bcolor$=esc$+"c,"
 RETURN

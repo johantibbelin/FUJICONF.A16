@@ -44,6 +44,23 @@ PROCEDURE test_screen
 RETURN
 PROCEDURE vt52_init
   ' ** VT52 codes
+  DIM vt52_num$(16)
+  vt52_num$(0)="0"
+  vt52_num$(1)="1"
+  vt52_num$(2)="2"
+  vt52_num$(3)="3"
+  vt52_num$(4)="4"
+  vt52_num$(5)="5"
+  vt52_num$(6)="6"
+  vt52_num$(7)="7"
+  vt52_num$(8)="8"
+  vt52_num$(9)="9"
+  vt52_num$(10)="A"
+  vt52_num$(11)="B"
+  vt52_num$(12)="C"
+  vt52_num$(13)="D"
+  vt52_num$(14)="E"
+  vt52_num$(15)="F"
   esc$=CHR$(27)
   vt52_cup$=esc$+"A"
   vt52_cdwn$=esc$+"B"
@@ -77,14 +94,36 @@ RETURN
 PROCEDURE vt52_test
   CLS
   LOCAL vt52text$,vt52init$
-  vt52text$=vt52_cls$+vt52_invert$+vt52_showm$+vt52_fcolor$+"3"
-  vt52text$=vt52text$+"           testy testy"
-  '  PRINT vt52_init$
-  LOCAL i%,t%
+  vt52init$=vt52_cls$+vt52_invert$+vt52_showm$+vt52_fcolor$+"3"
+  vt52text$=vt52text$+" Test of VT52 for use with "+vt52_fcolor$+CHR$(3)+"Fujinet      "
+  PRINT vt52_init$
+  LOCAL i%,t%,r%
+  PRINT vt52_invert$
+  FOR r%=1 TO 15
+    ' set color
+    PRINT vt52_fcolor$+CHR$(r%);
+    FOR i%=1 TO 40
+      PRINT " ";
+    NEXT i%
+    FOR t%=0 TO 3
+      VSYNC
+    NEXT t%
+  NEXT r%
   FOR i%=1 TO LEN(vt52text$)
     PRINT MID$(vt52text$,i%,1);
-    FOR t%=0 TO 5
+    FOR t%=0 TO 3
       VSYNC
     NEXT t%
   NEXT i%
+  PRINT vt52_invert$
+  FOR r%=1 TO 15
+    ' set color
+    PRINT vt52_fcolor$+CHR$(r%);
+    FOR i%=1 TO 40
+      PRINT " ";
+    NEXT i%
+    FOR t%=0 TO 3
+      VSYNC
+    NEXT t%
+  NEXT r%
 RETURN

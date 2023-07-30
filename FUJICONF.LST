@@ -127,3 +127,6 @@ PROCEDURE vt52_test
     NEXT t%
   NEXT r%
 RETURN
+PROCEDURE draw_menu
+  PRINT vt52_cls$;
+RETURN

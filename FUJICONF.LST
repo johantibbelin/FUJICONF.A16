@@ -15,7 +15,9 @@ use_vt52!=FALSE
 '
 CLS
 init
-vt52_test
+config_init
+draw_menu
+REM vt52_test
 END
 PROCEDURE init
   vt52_init
@@ -91,7 +93,7 @@ PROCEDURE vt52_init
   vt52_srowatend$=esc$+"w"
   vt52_bcolor$=esc$+"c,"
 RETURN
-PROCEDURE vt52_test
+> PROCEDURE vt52_test
   CLS
   LOCAL vt52text$,vt52init$
   vt52init$=vt52_cls$+vt52_invert$+vt52_showm$+vt52_fcolor$+"3"
@@ -129,4 +131,42 @@ PROCEDURE vt52_test
 RETURN
 PROCEDURE draw_menu
   PRINT vt52_cls$;
+  SETCOLOR 0,&HF
+  SETCOLOR 15,&HFF0
+  LOCAL i%,select%
+  select%=1
+  PRINT "Fujinet config"
+  PRINT ""
+  FOR i%=0 TO 7
+    IF i%=select%
+      PRINT vt52_invert$;
+    ENDIF
+    PRINT netadr$(i%)
+    IF i%=select%
+      PRINT vt52_normal$;
+    ENDIF
+  NEXT i%
+  PRINT ""
+  FOR i%=0 TO 39
+    PRINT "-";
+  NEXT i%
+  PRINT ""
+  FOR i%=0 TO 7
+    PRINT slot$(i%)
+    IF i%=1
+      PRINT ""
+    ENDIF
+  NEXT i%
+  ~INP(2)
+RETURN
+PROCEDURE config_init
+  DIM slot$(8),netadr$(8)
+  LOCAL i%
+  ' init slots
+  FOR i%=0 TO 7
+    slot$(i%)="Slot "+STR$(i%)
+  NEXT i%
+  FOR i%=0 TO 7
+    netadr$(i%)="Net adr "+STR$(i%)
+  NEXT i%
 RETURN

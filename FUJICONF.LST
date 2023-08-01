@@ -141,7 +141,7 @@ PROCEDURE draw_menu
     IF i%=select%
       PRINT vt52_invert$;
     ENDIF
-    PRINT netadr$(i%)
+    PRINT host$(i%)
     IF i%=select%
       PRINT vt52_normal$;
     ENDIF
@@ -160,13 +160,13 @@ PROCEDURE draw_menu
   ~INP(2)
 RETURN
 PROCEDURE config_init
-  DIM slot$(8),netadr$(8)
+  DIM slot$(8),host$(8)
   LOCAL i%
-  ' init slots
+  ' init hosts & slots
   FOR i%=0 TO 7
     slot$(i%)="Slot "+STR$(i%)
   NEXT i%
   FOR i%=0 TO 7
-    netadr$(i%)="Net adr "+STR$(i%)
+    host$(i%)="Host "+STR$(i%)
   NEXT i%
 RETURN
